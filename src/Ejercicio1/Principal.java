@@ -5,26 +5,18 @@ import javax.swing.JOptionPane;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	///comienza el programa
+	public static void main(String[] args) throws DNI_Invalido{
 		
- String dni=JOptionPane.showInputDialog("Ingrese el puto dni");
+	String dni;
+		
+    dni = JOptionPane.showInputDialog("Ingrese el puto dni");
+    
+    DNI.verificarDniInvalido(dni);
+    
+    
+    System.out.println("Program OK");
 
 	}
 
-	
-	public static boolean verificarDniInvalido(String dni) throws DNI_Invalido{
-		
-		boolean auxLetra=false;
-		boolean auxVacio=false;
-		
-		for(int x=0; x<dni.length();x++) {
-			
-			if( dni.isNu )
-			
-		}
-
-		
-			
-	}
-	
 }
