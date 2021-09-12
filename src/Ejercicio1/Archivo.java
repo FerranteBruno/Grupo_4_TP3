@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.TreeSet;
 
 public class Archivo {
 
@@ -104,7 +105,50 @@ public class Archivo {
 			System.out.println("No se encontro el archivo");
 		}
 	}
+	
+	public TreeSet<Personas> devuelve_lineas(TreeSet<Personas> perLst) {		
+		
+		FileReader entrada;
+		try {
+			entrada = new FileReader(ruta);
+			BufferedReader miBuffer = new BufferedReader(entrada);
+			
+		   String linea = "";
+		   		   
+		   String name ="";
+		   String lastname = "";
+		   String dni = "";
+		   
+		   Personas personas = new Personas(name, lastname, dni);
+		   
+		   while (linea != null) {
+				linea = miBuffer.readLine();
+				
+				if(linea != null) {
+					String parts [] = linea.split("-");
+					
+					name = parts[0]; // 123
+					lastname = parts[1]; // 654321
+					dni = parts[2]; // 654321
 
+					personas.setNombre(name);
+					personas.setApellido(lastname);
+					personas.setNombre(dni);
+					
+					perLst.add(personas);	
+					}
+				 
+		   		}
+			miBuffer.close();
+			entrada.close();
+		    }
+		   
+		   catch (IOException e) {
+			System.out.println("No se encontro el archivo");
+		}
+		return perLst;
+	}
+	
 	public String getRuta() {
 		return ruta;
 	}

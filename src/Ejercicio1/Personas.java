@@ -1,10 +1,11 @@
 package Ejercicio1;
 
-public class Personas {
+public class Personas implements Comparable <Personas>{
 
 	private String nombre;
 	private String apellido;
 	private String dni;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -33,6 +34,46 @@ public class Personas {
 	@Override
 	public String toString() {
 		return "Personas nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + "";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Personas other = (Personas) obj;
+		if (apellido == null) {
+			if (other.apellido != null)
+				return false;
+		} else if (!apellido.equals(other.apellido))
+			return false;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+	@Override
+	public int compareTo(Personas arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
