@@ -10,7 +10,7 @@ import Ejercicio1.Personas;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DNI_Invalido {
 		
 		Archivo archivin = new Archivo();
 		
@@ -31,7 +31,8 @@ public class Principal {
 		
 		TreeSet<Personas> perLst = new TreeSet<Personas>();
 		
-		archivin.devuelve_lineas(perLst);
+
+		perLst = archivin.devuelve_lineas(perLst);
 		
 		Iterator<Personas> it = perLst.iterator();
 		while(it.hasNext()) {

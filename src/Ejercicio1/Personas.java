@@ -25,7 +25,6 @@ public class Personas implements Comparable <Personas>{
 		this.dni = dni;
 	}
 	public Personas(String nombre, String apellido,String dni) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -34,11 +33,31 @@ public class Personas implements Comparable <Personas>{
 	@Override
 	public String toString() {
 		return "Personas nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + "";
+	}	
+	@Override
+	public int compareTo(Personas arg0) {
+		
+		int aComparar = 0;
+		
+		if(arg0.getApellido().length() > this.getApellido().length()) {
+			aComparar = this.getApellido().length();
+		}
+		else aComparar = arg0.getApellido().length();
+		
+		for(int i = 0 ; i < aComparar; i++) {
+			
+			if(arg0.getApellido().charAt(i) < this.getApellido().charAt(i)) {
+				return 1;
+			}
+			else if(arg0.getApellido().charAt(i) > this.getApellido().charAt(i))
+				return -1;
+		}	
+		return 0;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = 0;
 		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
@@ -70,12 +89,4 @@ public class Personas implements Comparable <Personas>{
 			return false;
 		return true;
 	}
-	@Override
-	public int compareTo(Personas arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	
-	
 }

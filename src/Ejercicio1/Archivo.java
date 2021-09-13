@@ -106,41 +106,54 @@ public class Archivo {
 		}
 	}
 	
-	public TreeSet<Personas> devuelve_lineas(TreeSet<Personas> perLst) {		
+	public TreeSet<Personas> devuelve_lineas(TreeSet<Personas> perLst){		
 		
 		FileReader entrada;
 		try {
-			entrada = new FileReader(ruta);
-			BufferedReader miBuffer = new BufferedReader(entrada);
-			
-		   String linea = "";
-		   		   
-		   String name ="";
-		   String lastname = "";
-		   String dni = "";
-		   
-		   Personas personas = new Personas(name, lastname, dni);
-		   
-		   while (linea != null) {
-				linea = miBuffer.readLine();
+			   entrada = new FileReader(ruta);
+			   BufferedReader miBuffer = new BufferedReader(entrada);
 				
-				if(linea != null) {
-					String parts [] = linea.split("-");
-					
-					name = parts[0]; // 123
-					lastname = parts[1]; // 654321
-					dni = parts[2]; // 654321
-
-					personas.setNombre(name);
-					personas.setApellido(lastname);
-					personas.setNombre(dni);
-					
-					perLst.add(personas);	
-					}
-				 
-		   		}
-			miBuffer.close();
-			entrada.close();
+			   String linea = "";
+			   		   
+			   String name ="";
+			   String lastname = "";
+			   String dni = "";
+			   
+			   boolean dniInvalid = false;
+			   
+			   while (linea != null) {
+				   
+				   	dniInvalid = false;
+				   	
+					linea = miBuffer.readLine();
+					Personas personas = new Personas(name, lastname, dni);
+					if(linea != null) {
+						String parts [] = linea.split("-",3);
+						
+						name = parts[0];
+						lastname = parts[1];
+						dni = parts[2];
+						
+						
+						try {
+							DNI.verificarDniInvalido(dni);
+						}
+						catch(DNI_Invalido d) {
+							dniInvalid = true;
+							d.printStackTrace();
+						}
+						finally {
+							if(dniInvalid == false) {
+								personas.setNombre(name);
+								personas.setApellido(lastname);
+								personas.setDni(dni);
+								perLst.add(personas);
+							}
+						}
+					}			 
+			   	}
+				miBuffer.close();
+				entrada.close();
 		    }
 		   
 		   catch (IOException e) {
