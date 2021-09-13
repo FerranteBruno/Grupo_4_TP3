@@ -10,7 +10,7 @@ public class Principal {
 		
 	String dni;
 		
-    dni = JOptionPane.showInputDialog("Ingrese el puto dni");
+    dni = JOptionPane.showInputDialog("Ingrese el dni");
     
     DNI.verificarDniInvalido(dni);
     
