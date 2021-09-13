@@ -39,7 +39,6 @@ public class DNI {
 
 	public static boolean contieneSoloLetras(String cadena) {
 		
-		int cont = 0;
 		
 	    for (int x = 0; x < cadena.length(); x++) {
 	        char c = cadena.charAt(x);

@@ -39,17 +39,23 @@ public class Personas implements Comparable <Personas>{
 		
 		int aComparar = 0;
 		
-		if(arg0.getApellido().length() > this.getApellido().length()) {
-			aComparar = this.getApellido().length();
+		String cadenaExt = "";
+		String cadenaInt = "";
+		
+		cadenaExt = arg0.getApellido() + arg0.getNombre() + arg0.getDni();
+		cadenaInt = this.getApellido() + this.getNombre() + this.getDni();
+		
+		if(cadenaExt.length() > cadenaInt.length()) {
+			aComparar = cadenaInt.length();
 		}
-		else aComparar = arg0.getApellido().length();
+		else aComparar = cadenaExt.length();
 		
 		for(int i = 0 ; i < aComparar; i++) {
 			
-			if(arg0.getApellido().charAt(i) < this.getApellido().charAt(i)) {
+			if(cadenaExt.charAt(i) < cadenaInt.charAt(i)) {
 				return 1;
 			}
-			else if(arg0.getApellido().charAt(i) > this.getApellido().charAt(i))
+			else if(cadenaExt.charAt(i) > cadenaInt.charAt(i))
 				return -1;
 		}	
 		return 0;
