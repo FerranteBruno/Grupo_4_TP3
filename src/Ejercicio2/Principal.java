@@ -13,8 +13,11 @@ public class Principal {
 	public static void main(String[] args) throws DNI_Invalido {
 		
 		Archivo archivin = new Archivo();
+		Archivo resultado = new Archivo();
 		
 		archivin.setRuta("Personas.txt");
+		resultado.setRuta("Resultado.txt");
+		resultado.creaArchivo();
 		
 		if(archivin.existe()) {
 			System.out.println("Existe el archivo");
@@ -37,6 +40,8 @@ public class Principal {
 		Iterator<Personas> it = perLst.iterator();
 		while(it.hasNext()) {
 			Personas per = (Personas) it.next();
+			
+			resultado.escribe_lineas(per.getNombre()+"-"+per.getApellido()+"-"+per.getDni()+"\n");
 			
 			System.out.println(per.toString());
 		}
